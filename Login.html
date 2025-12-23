@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>參賽者登入 | International Youth 2026</title>
+    <style>
+        /* --- 1. 基礎設定 --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* 背景：黃 -> 綠 -> 藍 漸層 */
+            background: linear-gradient(135deg, #fce38a 0%, #95e1d3 50%, #00818a 100%);
+        }
+
+        /* --- 2. 主卡片容器 (Split Screen) --- */
+        .login-container {
+            display: flex; /* 讓左右兩塊並排 */
+            width: 900px;
+            max-width: 95%;
+            height: 550px;
+            background-color: #fff;
+            border-radius: 20px;
+            overflow: hidden; /* 確保圓角不被內容切掉 */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* --- 3. 左側視覺區 (Logo) --- */
+        .visual-side {
+            flex: 1; /* 佔據一半寬度 */
+            background-color: #EDF5F5; /* 您指定的淡灰綠色 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        /* 裝飾用的圓圈，增加質感 */
+        .visual-circle {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(26, 92, 104, 0.05); /* 極淡的深綠色 */
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .visual-side img {
+            max-width: 80%;
+            max-height: 80%;
+            z-index: 1; /* 確保 Logo 浮在圓圈上面 */
+            object-fit: contain;
+            /* 如果暫時沒有圖片，這裡會顯示一個替代框，不用擔心 */
+        }
+
+        /* --- 4. 右側表單區 --- */
+        .form-side {
+            flex: 1; /* 佔據另一半寬度 */
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #ffffff;
+        }
+
+        .form-header {
+            margin-bottom: 30px;
+        }
+
+        .form-header h2 {
+            color: #1a5c68; /* 深藍綠色主色 */
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* 輸入框樣式 */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #1a5c68; /* Focus 時變色 */
+            background-color: #fcfcfc;
+        }
+
+        /* 按鈕樣式 */
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background-color: #1a5c68;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #13464f;
+            box-shadow: 0 4px 12px rgba(26, 92, 104, 0.2);
+        }
+
+        /* 底部連結區 */
+        .form-footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .form-footer a {
+            color: #666;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .form-footer a:hover {
+            color: #1a5c68;
+            text-decoration: underline;
+        }
+
+        /* --- 手機版響應式 (RWD) --- */
+        /* 當螢幕小於 768px 時，改成上下排列 */
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+                height: auto;
+                width: 90%;
+            }
+            .visual-side {
+                padding: 30px;
+                height: 200px;
+            }
+            .visual-circle {
+                width: 150px;
+                height: 150px;
+            }
+            .form-side {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        
+        <div class="visual-side">
+            <div class="visual-circle"></div>
+            
+            <img src="/images/logo_New.png" alt="明志科技大學 / 活動 Logo" onerror="this.style.display='none'; this.parentElement.innerHTML+='<p style=\'color:#666; z-index:2;\'>請放入 logo_New.png</p>'">
+        </div>
+
+        <div class="form-side">
+            <div class="form-header">
+                <h2>參賽者登入  LOGIN</h2>
+            </div>
+
+            <form>
+                <div class="input-group">
+                    <label>帳號 / Username</label>
+                    <input type="text" placeholder="請輸入您的帳號">
+                </div>
+
+                <div class="input-group">
+                    <label>密碼 / Password</label>
+                    <input type="password" placeholder="請輸入您的密碼">
+                </div>
+
+                <button type="button" class="btn-submit">登入系統</button>
+
+                <div class="form-footer">
+                    <a href="#">忘記密碼?</a>
+                    <span style="color:#ddd">|</span>
+                    <a href="#">建立新帳號</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>
